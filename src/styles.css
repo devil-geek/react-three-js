@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  background-image: linear-gradient(
+    to top,
+    #0a264f,
+    #15487a,
+    #1b6ea6,
+    #1b96d2,
+    #16c1fd
+  );
+}
+
+.controls {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+}
+
+.btn {
+  border: 2px solid #e7e7e7;
+  background-color: transparent;
+  color: whitesmoke;
+  padding: 0.5rem 0.6rem 0.2rem;
+  margin: 0.2rem;
+  font-size: 2rem;
+  cursor: pointer;
+  border-radius: 100%;
+}
+
+.btn:hover {
+  background: rgba(231, 231, 231, 0.3);
+}
