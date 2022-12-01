@@ -11,7 +11,8 @@ import {
   HemisphereLight,
   // loader
   Object3D,
-  Event
+  Event,
+  Mesh,
 } from "three";
 
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
@@ -32,7 +33,7 @@ export const createScene = () => {
   const renderer = new WebGLRenderer({
     antialias: true,
     alpha: true,
-    powerPreference: "high-performance"
+    powerPreference: "high-performance",
   });
 
   renderer.outputEncoding = sRGBEncoding;
@@ -49,7 +50,7 @@ export const createScene = () => {
   return { renderer, scene, camera };
 };
 
-export const addLights = (scene) => {
+export const addLights = (scene: Scene) => {
   const directionalLight = new DirectionalLight(0xffffff, 0.2);
   directionalLight.castShadow = true;
   scene.add(directionalLight);
@@ -66,7 +67,8 @@ export const loadFbx = (path: string, container: Object3D<Event>) => {
     path,
     (object) => {
       object.traverse(function (child) {
-        if ((child as THREE.Mesh).isMesh) {
+        const mesh = child as Mesh;
+        if (mesh.isMesh) {
           child.castShadow = true;
           child.receiveShadow = true;
         }
@@ -90,7 +92,8 @@ export const loadFbxAsync = async (path: string) => {
     const object = await fbxLoader.loadAsync(path);
 
     object.traverse(function (child) {
-      if ((child as THREE.Mesh).isMesh) {
+      const mesh = child as Mesh;
+      if (mesh.isMesh) {
         child.castShadow = true;
         child.receiveShadow = true;
       }
